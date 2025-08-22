@@ -84,4 +84,18 @@ This application is a true *"Swiss Army knife"* for Android modification, provid
 - **Python**
 - **PyQt6** (GUI)  
   ```bash
-  pip install PyQt6
+  pip install PyQt6 edl
+---
+Command-line tools:
+
+ADB & Fastboot: Android SDK Platform Tools https://developer.android.com/studio/releases/platform-tools
+
+Heimdall: Official GitLab Repository https://gitlab.com/BenjaminDobell/Heimdall
+
+SP Flash Tool: https://spflashtool.com
+
+Odin4 (Linux): Community-developed tool https://github.com/Adrilaw/OdinV4/releases
+
+edl.py: pip install edl
+
+scrcpy: Official GitHub Repository https://github.com/Genymobile/scrcpy. Can often be installed via your Linux distribution's package manager (e.g., sudo apt install scrcpy).
