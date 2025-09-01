@@ -1290,7 +1290,7 @@ class FastbootAdbGUI(QMainWindow):
                 args.extend(["-m", self.scrcpy_resolution_combo.currentText()])
             if self.scrcpy_show_touches_check.isChecked(): args.append("--show-touches")
             if self.scrcpy_stay_awake_check.isChecked(): args.append("--stay-awake")
-            self.start_process(self.scrcpy_path, self.build_command(self.scrcpy_path, args), button)
+            self.start_process(self.scrcpy_path, args, button)
             return
             
         current_main_tab_index = self.main_tabs.currentIndex()
@@ -1494,7 +1494,7 @@ class FastbootAdbGUI(QMainWindow):
             if not filepath or not os.path.exists(filepath): return self.show_error(self.get_string("error_file_not_found", path=filepath))
             args = ["boot", filepath]
         
-        if args: self.start_process(self.fastboot_path, self.build_command(self.fastboot_path, args), button)
+        if args: self.start_process(self.fastboot_path, args, button)
 
     def run_adb_command(self, command_type, button):
         args = []; dispatch = {
@@ -1526,15 +1526,15 @@ class FastbootAdbGUI(QMainWindow):
             if save_path: args = ["bugreport", save_path]
         elif command_type == "wm_set":
             size = self.wm_size_input.text(); density = self.wm_density_input.text()
-            if size: self.start_process(self.adb_path, self.build_command(self.adb_path, ["shell", "wm", "size", size]), button)
-            if density: self.start_process(self.adb_path, self.build_command(self.adb_path, ["shell", "wm", "density", density]), button)
+            if size: self.start_process(self.adb_path, ["shell", "wm", "size", size], button)
+            if density: self.start_process(self.adb_path, ["shell", "wm", "density", density], button)
             return
         elif command_type == "wm_reset":
-            self.start_process(self.adb_path, self.build_command(self.adb_path, ["shell", "wm", "size", "reset"]), button)
-            self.start_process(self.adb_path, self.build_command(self.adb_path, ["shell", "wm", "density", "reset"]), button)
+            self.start_process(self.adb_path, ["shell", "wm", "size", "reset"], button)
+            self.start_process(self.adb_path, ["shell", "wm", "density", "reset"], button)
             return
             
-        if args: self.start_process(self.adb_path, self.build_command(self.adb_path, args), button)
+        if args: self.start_process(self.adb_path, args, button)
 
     def run_odin_command(self, command_type, button):
         if command_type != "odin_flash": return
@@ -1639,7 +1639,7 @@ class FastbootAdbGUI(QMainWindow):
     def run_edl_command(self, command_type, button):
         args = []
         if command_type == "edl_reboot_edl":
-            self.start_process(self.adb_path, self.build_command(self.adb_path, ["reboot", "edl"]), button)
+            self.start_process(self.adb_path, ["reboot", "edl"], button)
             return
         elif command_type == "edl_printgpt":
             args = ["printgpt"]
